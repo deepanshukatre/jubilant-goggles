@@ -167,143 +167,147 @@ Widget::~Widget() { delete ui; }
 
 void Widget::spriteMovement()
 {
-	qreal movementDirection{};
-	directionWidget->setRotation (0);
-	bool didSth = false;
-	//	QTransform initPos = aThingyToMove->sceneTransform();
+    qreal movementDirection{};
+    directionWidget->setRotation (0);
+    bool didSth = false;
+    //	QTransform initPos = aThingyToMove->sceneTransform();
 
-	//	qDebug() << "current movement get : " << currentMovement.up << currentMovement.down << currentMovement.right << currentMovement.left;
-	if (currentMovement.up)
-	{
-		//		qDebug() << "UP";
-		//		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (0, -1.5));
-		//		aThingyToMove->setPos (aThingyToMove->pos() + QPointF (0, -1.5));
-		upArrow->setBrush (Qt::green);
-		didSth = true;
-	}
-	else
-	{
-		upArrow->setBrush (Qt::gray);
-	}
-	if (currentMovement.down)
-	{
-		//		qDebug() << "DOWN";
-		//		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (0, 0.7));
-		//		aThingyToMove->setPos (aThingyToMove->pos() + QPointF (0, 0.7));
-		downArrow->setBrush (Qt::green);
-		didSth = true;
-	}
-	else
-	{
-		downArrow->setBrush (Qt::gray);
-	}
-	if (currentMovement.right)
-	{
-		//		qDebug() << "RIGHT";
-		//		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (0.8, 0));
-		//		aThingyToMove->setPos (aThingyToMove->pos() + QPointF (0.8, 0));
-		rightArrow->setBrush (Qt::green);
-		didSth = true;
-	}
-	else
-	{
-		rightArrow->setBrush (Qt::gray);
-	}
-	if (currentMovement.left)
-	{
-		//		qDebug() << "LEFT";
-		//		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (-0.8, 0));
-		leftArrow->setBrush (Qt::green);
-		didSth = true;
-	}
-	else
-	{
-		leftArrow->setBrush (Qt::gray);
-	}
+    //	qDebug() << "current movement get : " << currentMovement.up << currentMovement.down << currentMovement.right << currentMovement.left;
+    if (currentMovement.up)
+    {
+        //		qDebug() << "UP";
+        //		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (0, -1.5));
+                aThingyToMove->setPos (aThingyToMove->pos() + QPointF (0, -1.5));
+        upArrow->setBrush (Qt::green);
+        didSth = true;
+    }
+    else
+    {
+        upArrow->setBrush (Qt::gray);
+    }
+    if (currentMovement.down)
+    {
+        //		qDebug() << "DOWN";
+        //		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (0, 0.7));
+        //		aThingyToMove->setPos (aThingyToMove->pos() + QPointF (0, 0.7));
+        aThingyToMove->setPos(aThingyToMove->pos() + QPointF(0, 1.5));
+        downArrow->setBrush (Qt::green);
+        didSth = true;
+    }
+    else
+    {
+        downArrow->setBrush (Qt::gray);
+    }
+    if (currentMovement.right)
+    {
+        //		qDebug() << "RIGHT";
+        //		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (0.8, 0));
+        //		aThingyToMove->setPos (aThingyToMove->pos() + QPointF (0.8, 0));
+        aThingyToMove->setPos(aThingyToMove->pos() + QPointF(1.5, 0));  // this one I am moving in the right side
+        rightArrow->setBrush (Qt::green);
+        didSth = true;
+    }
+    else
+    {
+        rightArrow->setBrush (Qt::gray);
+    }
+    if (currentMovement.left)
+    {
+        //		qDebug() << "LEFT";
+        //		aThingyToMove->setTransform (aThingyToMove->sceneTransform().translate (-0.8, 0));
+        aThingyToMove->setPos(aThingyToMove->pos() + QPointF(-1.5, 0));  // this one I am moving in the left side
+        leftArrow->setBrush (Qt::green);
+        didSth = true;
+    }
+    else
+    {
+        leftArrow->setBrush (Qt::gray);
+    }
 
-	if (!(currentMovement.up && currentMovement.down))
-	{
-		if (currentMovement.up)
-		{
-			movementDirection = 0;
-			if (!(currentMovement.left && currentMovement.right))
-			{
-				if (currentMovement.left)
-				{
-					movementDirection = 315;
-				}
-				else if (currentMovement.right)
-				{
-					movementDirection = 45;
-				}
-			}
-		}
-		else if (currentMovement.down)
-		{
-			movementDirection = 180;
-			if (!(currentMovement.left && currentMovement.right))
-			{
-				if (currentMovement.left)
-				{
-					movementDirection = 225;
-				}
-				else if (currentMovement.right)
-				{
-					movementDirection = 135;
-				}
-			}
-		}
-		else if (!(currentMovement.left && currentMovement.right))
-		{
-			if (currentMovement.left)
-			{
-				movementDirection = 270;
-			}
-			else if (currentMovement.right)
-			{
-				movementDirection = 90;
-			}
-		}
-	}
+    if (!(currentMovement.up && currentMovement.down))
+    {
+        if (currentMovement.up)
+        {
+            movementDirection = 0;
+            if (!(currentMovement.left && currentMovement.right))
+            {
+                if (currentMovement.left)
+                {
+                    movementDirection = 315;
+                }
+                else if (currentMovement.right)
+                {
+                    movementDirection = 45;
+                }
+            }
+        }
+        else if (currentMovement.down)
+        {
+            movementDirection = 180;
+            if (!(currentMovement.left && currentMovement.right))
+            {
+                if (currentMovement.left)
+                {
+                    movementDirection = 225;
+                }
+                else if (currentMovement.right)
+                {
+                    movementDirection = 135;
+                }
+            }
+        }
+        else if (!(currentMovement.left && currentMovement.right))
+        {
+            if (currentMovement.left)
+            {
+                movementDirection = 270;
+            }
+            else if (currentMovement.right)
+            {
+                movementDirection = 90;
+            }
+        }
+    }
 
-	qreal direction = QLineF (aThingyToMove->scenePos(), currentMovement.mousePointerLocation).angle();
-	aThingyToMove->setRotation (-direction + 90);
+    qreal direction = QLineF (aThingyToMove->scenePos(), currentMovement.mousePointerLocation).angle();
+    aThingyToMove->setRotation (-direction + 90);
 
-	if (didSth)
-	{
-		aThingyToMove->setPos (aThingyToMove->scenePos() + calcDeltaMovement (aThingyToMove->rotation(), movementDirection));
-	}
-	directionWidget->setPos (aThingyToMove->scenePos());
+    if (didSth)
+    {
+//        aThingyToMove->setPos (aThingyToMove->scenePos() + calcDeltaMovement (aThingyToMove->rotation(), movementDirection));  // Problem is in this one after miscalculation our ellispe is not moving in the correct direction
 
-	static QPointF prevMousePointerPos;
-	if (prevMousePointerPos != currentMovement.mousePointerLocation)
-	{
-		didSth = true;
-		prevMousePointerPos = currentMovement.mousePointerLocation;
-	}
+    }
+    directionWidget->setPos (aThingyToMove->scenePos());
 
-	if (true)
-	{
-		//		qDebug() << "SpriteMovement... Initial Position: " << initPos;
-		//		qDebug() << "_________________________________________SpriteMovement... Final Position: " << aThingyToMove->sceneTransform() << "||"
-		//				 << aThingyToMove->rotation();
-		//		qDebug() << aThingyToMove->collidingItems (Qt::IntersectsItemShape);
-		QList<QGraphicsItem *> collidingThingies = pointingLine->collidingItems (Qt::IntersectsItemShape);
-		QString output = "_____________________________\n";
-		output += "Mouse At: " + QString::number (currentMovement.mousePointerLocation.rx()) + ", "
-			+ QString::number (currentMovement.mousePointerLocation.ry()) + "\n" + "Direction : " + QString::number (direction) + "\n";
-		if (!collidingThingies.isEmpty())
-		{
-			for (auto g : collidingThingies)
-			{
-				//				qDebug() << g->data (0) << g->data (1) << g->data (2) << g->data (3) << g->data (4) << g->data (5);
-				output.append (g->data (0).toString() + "\n");
-				poofTheEnemy (g);
-			}
-		}
-		ui->textBrowser->setText (output);
-	}
-	//	Q_UNUSED (didSth);
+    static QPointF prevMousePointerPos;
+    if (prevMousePointerPos != currentMovement.mousePointerLocation)
+    {
+        didSth = true;
+        prevMousePointerPos = currentMovement.mousePointerLocation;
+    }
+
+    if (true)
+    {
+        //		qDebug() << "SpriteMovement... Initial Position: " << initPos;
+        //		qDebug() << "_________________________________________SpriteMovement... Final Position: " << aThingyToMove->sceneTransform() << "||"
+        //				 << aThingyToMove->rotation();
+        //		qDebug() << aThingyToMove->collidingItems (Qt::IntersectsItemShape);
+        QList<QGraphicsItem *> collidingThingies = pointingLine->collidingItems (Qt::IntersectsItemShape);
+        QString output = "_____________________________\n";
+        output += "Mouse At: " + QString::number (currentMovement.mousePointerLocation.rx()) + ", "
+            + QString::number (currentMovement.mousePointerLocation.ry()) + "\n" + "Direction : " + QString::number (direction) + "\n";
+        if (!collidingThingies.isEmpty())
+        {
+            for (auto g : collidingThingies)
+            {
+                //				qDebug() << g->data (0) << g->data (1) << g->data (2) << g->data (3) << g->data (4) << g->data (5);
+                output.append (g->data (0).toString() + "\n");
+                poofTheEnemy (g);
+            }
+        }
+        ui->textBrowser->setText (output);
+    }
+    //	Q_UNUSED (didSth);
 }
 
 void Widget::spriteMovement_M2()
